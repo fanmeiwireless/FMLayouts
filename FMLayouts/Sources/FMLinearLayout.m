@@ -82,6 +82,10 @@
         return;
     }
     
+    if (self.fmLayout_distribution != FMLayoutDistributionAlongAxis) {
+        return;
+    }
+    
     UIView *prevSubView = self.arrangedSubviews.count >= 2 ? self.arrangedSubviews[self.arrangedSubviews.count - 2] : nil;
     UIView *subview = self.arrangedSubviews.lastObject;
     
@@ -132,6 +136,42 @@
                 }
             }];
         }
+        else if (self.fmLayout_distribution == FMLayoutDistributionCenter) {
+            __block CGFloat totalHeight = (self.arrangedSubviews.count - 1) * self.fmLayout_spacing;
+            [self.arrangedSubviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                totalHeight += obj.fm_height;
+            }];
+            
+            CGFloat margin = (self.fm_height - totalHeight) / 2;
+            
+            __block CGFloat yOffset = margin;
+            [self.arrangedSubviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                obj.fm_y = yOffset;
+                [self alignSubview:obj];
+                yOffset = CGRectGetMaxY(obj.frame);
+                if (idx < self.arrangedSubviews.count - 1) {
+                    yOffset += self.fmLayout_spacing;
+                }
+            }];
+        }
+        else if (self.fmLayout_distribution == FMLayoutDistributionBetween) {
+            __block CGFloat totalHeight = self.fmLayout_leadingSpacing + self.fmLayout_trailingSpacing;
+            [self.arrangedSubviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                totalHeight += obj.fm_height;
+            }];
+            
+            CGFloat spacing = self.arrangedSubviews.count > 1 ?  (self.fm_height - totalHeight) / (self.arrangedSubviews.count - 1) : 0;
+            
+            __block CGFloat yOffset = self.fmLayout_leadingSpacing;
+            [self.arrangedSubviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                obj.fm_y = yOffset;
+                [self alignSubview:obj];
+                yOffset = CGRectGetMaxY(obj.frame);
+                if (idx < self.arrangedSubviews.count - 1) {
+                    yOffset += spacing;
+                }
+            }];
+        }
     }
     else {
         if (self.fmLayout_distribution == FMLayoutDistributionFill) {
@@ -150,6 +190,42 @@
                 xOffset = CGRectGetMaxX(obj.frame);
                 if (idx < self.arrangedSubviews.count - 1) {
                     xOffset += self.fmLayout_spacing;
+                }
+            }];
+        }
+        else if (self.fmLayout_distribution == FMLayoutDistributionCenter) {
+            __block CGFloat totalWidth = (self.arrangedSubviews.count - 1) * self.fmLayout_spacing;
+            [self.arrangedSubviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                totalWidth += obj.fm_width;
+            }];
+            
+            CGFloat margin = (self.fm_width - totalWidth) / 2;
+            
+            __block CGFloat xOffset = margin;
+            [self.arrangedSubviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                obj.fm_x = xOffset;
+                [self alignSubview:obj];
+                xOffset = CGRectGetMaxX(obj.frame);
+                if (idx < self.arrangedSubviews.count - 1) {
+                    xOffset += self.fmLayout_spacing;
+                }
+            }];
+        }
+        else if (self.fmLayout_distribution == FMLayoutDistributionBetween) {
+            __block CGFloat totalWidth = self.fmLayout_leadingSpacing + self.fmLayout_trailingSpacing;
+            [self.arrangedSubviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                totalWidth += obj.fm_width;
+            }];
+            
+            CGFloat spacing = self.arrangedSubviews.count > 1 ?  (self.fm_width - totalWidth) / (self.arrangedSubviews.count - 1) : 0;
+            
+            __block CGFloat xOffset = self.fmLayout_leadingSpacing;
+            [self.arrangedSubviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                obj.fm_x = xOffset;
+                [self alignSubview:obj];
+                xOffset = CGRectGetMaxX(obj.frame);
+                if (idx < self.arrangedSubviews.count - 1) {
+                    xOffset += spacing;
                 }
             }];
         }

@@ -23,15 +23,15 @@ typedef NS_ENUM(NSInteger, FMLayoutDistribution) {
      */
     FMLayoutDistributionFill,
     
-//    /*
-//     Adjust `fmLayout_leadingSpacing` and `fmLayout_trailingSpacing`, arranged subviews alignment center along main axis.
-//     */
-//    FMLayoutDistributionCenter,
-//    
-//    /*
-//     Adjust `fmLayout_spacing`, arranged subviews alignment center along main axis.
-//     */
-//    FMLayoutDistributionBetween
+    /*
+     Adjust `fmLayout_leadingSpacing` and `fmLayout_trailingSpacing`, arranged subviews alignment center along main axis.
+     */
+    FMLayoutDistributionCenter,
+    
+    /*
+     Adjust `fmLayout_spacing`, arranged subviews alignment center along main axis.
+     */
+    FMLayoutDistributionBetween
 };
 
 /*
