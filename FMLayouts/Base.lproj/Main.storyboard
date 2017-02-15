@@ -23,14 +23,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Id-wn-JLM">
-                                <rect key="frame" x="46" y="68" width="283" height="531"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="21" y="50" width="333" height="567"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="7Id-wn-JLM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="48" id="0lL-0J-Woa"/>
-                            <constraint firstItem="7Id-wn-JLM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="3kJ-Ze-yJ1"/>
+                            <constraint firstItem="7Id-wn-JLM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="0lL-0J-Woa"/>
+                            <constraint firstItem="7Id-wn-JLM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="3kJ-Ze-yJ1"/>
                             <constraint firstItem="7Id-wn-JLM" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NyI-Ik-6PO"/>
                             <constraint firstItem="7Id-wn-JLM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lNR-MJ-b9I"/>
                         </constraints>
