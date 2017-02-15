@@ -56,10 +56,22 @@
             if (self.fmLayout_alignment == FMLayoutAlignmentCenter) {
                 subview.fm_centerX = self.fm_width / 2;
             }
+            else if (self.fmLayout_alignment == FMLayoutAlignmentLeading) {
+                subview.fm_x = 0;
+            }
+            else if (self.fmLayout_alignment == FMLayoutAlignmentTrailing) {
+                subview.fm_right = self.fm_width;
+            }
         }
         else {
             if (self.fmLayout_alignment == FMLayoutAlignmentCenter) {
                 subview.fm_centerY = self.fm_height / 2;
+            }
+            else if (self.fmLayout_alignment == FMLayoutAlignmentLeading) {
+                subview.fm_y = 0;
+            }
+            else if (self.fmLayout_alignment == FMLayoutAlignmentTrailing) {
+                subview.fm_bottom = self.fm_height;
             }
         }
     }

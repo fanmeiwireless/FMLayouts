@@ -42,6 +42,10 @@ typedef NS_ENUM(NSInteger, FMLayoutAlignment) {
      Arranged subviews alignment center along cross axis.
      */
     FMLayoutAlignmentCenter = 0,
+    
+    FMLayoutAlignmentLeading,
+    
+    FMLayoutAlignmentTrailing,
 };
 
 /*

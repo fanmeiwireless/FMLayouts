@@ -38,4 +38,9 @@ typedef NS_ENUM(NSInteger, FMLayoutAxis) {
 @property (nonatomic, assign) CGFloat fm_height;
 @property (nonatomic, assign) CGFloat fm_width;
 
+@property (nonatomic, assign) CGFloat fm_top;
+@property (nonatomic, assign) CGFloat fm_bottom;
+@property (nonatomic, assign) CGFloat fm_left;
+@property (nonatomic, assign) CGFloat fm_right;
+
 @end

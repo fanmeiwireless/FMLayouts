@@ -124,4 +124,44 @@ static int kLayoutConfig;
     self.frame = frame;
 }
 
+- (void)setFm_top:(CGFloat)t
+{
+    self.frame = CGRectMake(self.fm_left, t, self.fm_width, self.fm_height);
+}
+
+- (CGFloat)fm_top
+{
+    return self.frame.origin.y;
+}
+
+- (void)setFm_bottom:(CGFloat)b
+{
+    self.frame = CGRectMake(self.fm_left, b - self.fm_height, self.fm_width, self.fm_height);
+}
+
+- (CGFloat)fm_bottom
+{
+    return self.frame.origin.y + self.frame.size.height;
+}
+
+- (void)setFm_left:(CGFloat)l
+{
+    self.frame = CGRectMake(l, self.fm_top, self.fm_width, self.fm_height);
+}
+
+- (CGFloat)fm_left
+{
+    return self.frame.origin.x;
+}
+
+- (void)setFm_right:(CGFloat)r
+{
+    self.frame = CGRectMake(r - self.fm_width, self.fm_top, self.fm_width, self.fm_height);
+}
+
+- (CGFloat)fm_right
+{
+    return self.frame.origin.x + self.frame.size.width;
+}
+
 @end

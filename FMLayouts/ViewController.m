@@ -68,12 +68,13 @@
 - (CGFloat)demo2AtOffsetY:(CGFloat)offsetY {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, offsetY, self.scrollView.fm_width, 100)];
     label.numberOfLines = 0;
-    label.text = @"Axis:Horizonal, distribution:AlongAxis, spacing:20, leadingSpacing:40, trailingSpacing:10";
+    label.text = @"Axis:Horizonal, distribution:AlongAxis, alignment:Leading spacing:20, leadingSpacing:40, trailingSpacing:10";
     [self.scrollView addSubview:label];
     
     FMLinearLayout *l = [[FMLinearLayout alloc] initWithFrame:CGRectMake(margin, CGRectGetMaxY(label.frame), self.scrollView.fm_width - margin * 2, 100)];
     l.fmLayout_axis = kFMLayoutAxisHorizonal;
     l.fmLayout_distribution = FMLayoutDistributionAlongAxis;
+    l.fmLayout_alignment = FMLayoutAlignmentLeading;
     l.fmLayout_spacing = 20;
     l.fmLayout_leadingSpacing = 40;
     l.fmLayout_trailingSpacing = 10;
@@ -130,12 +131,13 @@
 - (CGFloat)demo4AtOffsetY:(CGFloat)offsetY {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, offsetY, self.scrollView.fm_width, 100)];
     label.numberOfLines = 0;
-    label.text = @"Axis:Horizonal, distribution:Fill, spacing:0, leadingSpacing:0, trailingSpacing:20";
+    label.text = @"Axis:Horizonal, distribution:Fill, alignment:Trailing spacing:0, leadingSpacing:0, trailingSpacing:20";
     [self.scrollView addSubview:label];
     
     FMLinearLayout *l = [[FMLinearLayout alloc] initWithFrame:CGRectMake(margin, CGRectGetMaxY(label.frame), self.scrollView.fm_width - margin * 2, 100)];
     l.fmLayout_axis = kFMLayoutAxisHorizonal;
     l.fmLayout_distribution = FMLayoutDistributionFill;
+    l.fmLayout_alignment = FMLayoutAlignmentTrailing;
     l.fmLayout_spacing = 0;
     l.fmLayout_leadingSpacing = 0;
     l.fmLayout_trailingSpacing = 20;
