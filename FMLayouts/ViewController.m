@@ -11,7 +11,7 @@
 
 @interface ViewController ()
 
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) IBOutlet FMScrollableLinearLayout *scrollView;
 
 @end
 
@@ -21,56 +21,52 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    CGFloat offsetY = [self buildLayoutWithAxis:kFMLayoutAxisHorizonal withTitle:@"Axis:Horizonal" offsetY:0];
+    self.scrollView.fmLayout_spacing = 30;
     
-    offsetY = [self buildLayoutWithAxis:kFMLayoutAxisVertical withTitle:@"Axis:Vertical" offsetY:offsetY];
-    
-    
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, offsetY);
+    [self buildLayoutWithAxis:kFMLayoutAxisHorizonal withTitle:@"Axis:Horizonal"];
+    [self buildLayoutWithAxis:kFMLayoutAxisVertical withTitle:@"Axis:Vertical"];
 }
 
-- (CGFloat)buildLayoutWithAxis:(FMLayoutAxis)axis
-                     withTitle:(NSString *)title
-                       offsetY:(CGFloat)offsetY {
+- (void)buildLayoutWithAxis:(FMLayoutAxis)axis
+                     withTitle:(NSString *)title {
     
-    offsetY = [self buildLayoutWithAxis:axis distribution:FMLayoutDistributionAlongAxis withTitle:[NSString stringWithFormat:@"%@\r\nDistribution:AlongAxis", title] offsetY:offsetY];
+    [self buildLayoutWithAxis:axis distribution:FMLayoutDistributionAlongAxis withTitle:[NSString stringWithFormat:@"%@\r\nMain axis distribution:AlongAxis", title]];
     
-    offsetY = [self buildLayoutWithAxis:axis distribution:FMLayoutDistributionFill withTitle:[NSString stringWithFormat:@"%@\r\nDistribution:Fill", title] offsetY:offsetY];
+    [self buildLayoutWithAxis:axis distribution:FMLayoutDistributionFill withTitle:[NSString stringWithFormat:@"%@\r\nMain axis distribution:Fill", title]];
     
-    offsetY = [self buildLayoutWithAxis:axis distribution:FMLayoutDistributionCenter withTitle:[NSString stringWithFormat:@"%@\r\nDistribution:Center", title] offsetY:offsetY];
-    
-    offsetY = [self buildLayoutWithAxis:axis distribution:FMLayoutDistributionBetween withTitle:[NSString stringWithFormat:@"%@\r\nDistribution:Between", title] offsetY:offsetY];
-    
-    return offsetY;
+    [self buildLayoutWithAxis:axis distribution:FMLayoutDistributionCenter withTitle:[NSString stringWithFormat:@"%@\r\nMain axis distribution:Center", title]];
 }
 
-- (CGFloat)buildLayoutWithAxis:(FMLayoutAxis)axis
+- (void)buildLayoutWithAxis:(FMLayoutAxis)axis
                   distribution:(FMLayoutDistribution)distribution
-                     withTitle:(NSString *)title
-                       offsetY:(CGFloat)offsetY {
+                     withTitle:(NSString *)title {
     
-    offsetY = [self buildLayoutWithAxis:axis distribution:distribution alignment:FMLayoutAlignmentCenter withTitle:[NSString stringWithFormat:@"%@\r\nAlignment:Center", title] offsetY:offsetY];
+    [self buildLayoutWithAxis:axis distribution:distribution alignment:FMLayoutAlignmentCenter withTitle:[NSString stringWithFormat:@"%@\r\nCross axis alignment:Center", title]];
     
-    offsetY = [self buildLayoutWithAxis:axis distribution:distribution alignment:FMLayoutAlignmentLeading withTitle:[NSString stringWithFormat:@"%@\r\nAlignment:Leading", title] offsetY:offsetY];
+    [self buildLayoutWithAxis:axis distribution:distribution alignment:FMLayoutAlignmentLeading withTitle:[NSString stringWithFormat:@"%@\r\nCross axis alignment:Leading", title]];
     
-    offsetY = [self buildLayoutWithAxis:axis distribution:distribution alignment:FMLayoutAlignmentTrailing withTitle:[NSString stringWithFormat:@"%@\r\nAlignment:Trailing", title] offsetY:offsetY];
-    
-    return offsetY;
+    [self buildLayoutWithAxis:axis distribution:distribution alignment:FMLayoutAlignmentTrailing withTitle:[NSString stringWithFormat:@"%@\r\nCross axis alignment:Trailing", title]];
 }
 
 #define margin (20)
 
-- (CGFloat)buildLayoutWithAxis:(FMLayoutAxis)axis
+- (void)buildLayoutWithAxis:(FMLayoutAxis)axis
                   distribution:(FMLayoutDistribution)distribution
                      alignment:(FMLayoutAlignment)alignment
-                     withTitle:(NSString *)title
-                       offsetY:(CGFloat)offsetY {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, offsetY, self.scrollView.fm_width, 100)];
+                     withTitle:(NSString *)title {
+    
+    FMLinearLayout *container = [[FMLinearLayout alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.scrollView.frame), 0) axis:kFMLayoutAxisVertical mainAxisDistribution:FMLayoutDistributionAlongAxis crossAxisAlignment:FMLayoutAlignmentCenter];
+    container.fmLayout_spacing = 20;
+    container.fmLayout_trailingSpacing = 20;
+    container.backgroundColor = [UIColor lightGrayColor];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(container.bounds), 100)];
     label.numberOfLines = 0;
     label.text = title;
-    [self.scrollView addSubview:label];
+    label.backgroundColor = [UIColor brownColor];
+    [container addArrangedSubview:label];
     
-    FMLinearLayout *l = [[FMLinearLayout alloc] initWithFrame:CGRectMake(margin, CGRectGetMaxY(label.frame), self.scrollView.fm_width - margin * 2, 100)];
+    FMLinearLayout *l = [[FMLinearLayout alloc] initWithFrame:CGRectMake(margin, 0, self.scrollView.frame.size.width - margin * 2, 150)];
     l.fmLayout_axis = axis;
     l.fmLayout_distribution = distribution;
     l.fmLayout_alignment = alignment;
@@ -91,9 +87,8 @@
     v3.backgroundColor = [UIColor orangeColor];
     [l addArrangedSubview:v3];
     
-    [self.scrollView addSubview:l];
-    
-    return CGRectGetMaxY(l.frame) + margin * 2;
+    [container addArrangedSubview:l];
+    [self.scrollView addArrangedSubview:container];
 }
 
 - (void)didReceiveMemoryWarning {

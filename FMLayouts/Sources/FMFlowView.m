@@ -41,13 +41,15 @@
 
 - (void)resetViewFrame:(UIView *)view {
     if (view) {
-        if (self.views.count) {
+        if (self.views.count > 0) {
             if (CGRectGetWidth(view.frame) > CGRectGetWidth(self.frame) - (CGRectGetMaxX(self.views.lastObject.frame) + self.layoutInset.right + self.layoutSpace)) {
                 view.frame = CGRectMake(self.layoutInset.left, CGRectGetMaxY(self.views.lastObject.frame) + self.layoutSpace, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame));
-            }else {
+            }
+            else {
                 view.frame = CGRectMake(CGRectGetMaxX(self.views.lastObject.frame) + self.layoutSpace,CGRectGetMinY(self.views.lastObject.frame),CGRectGetWidth(view.frame), CGRectGetHeight(view.frame));
             }
-        }else {
+        }
+        else {
             view.frame = CGRectMake(self.layoutInset.left, self.layoutInset.top, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame));
         }
         if (CGRectGetWidth(view.frame) > (CGRectGetWidth(self.frame) - self.layoutInset.left - self.layoutInset.right)) {
@@ -63,7 +65,8 @@
         CGFloat bottomY = CGRectGetMaxY(self.views.lastObject.frame) + self.layoutInset.bottom;
         if (bottomY > CGRectGetHeight(self.frame)) {
             self.contentSize = CGSizeMake(CGRectGetWidth(self.frame), bottomY);
-        }else {
+        }
+        else {
             self.contentSize = self.frame.size;
         }
     }

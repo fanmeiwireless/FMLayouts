@@ -18,7 +18,7 @@
 		B73311181E544B830042FCE4 /* FMFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = B73311101E544B830042FCE4 /* FMFlowView.m */; };
 		B73311191E544B830042FCE4 /* FMLinearLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B73311131E544B830042FCE4 /* FMLinearLayout.m */; };
 		B733111A1E544B830042FCE4 /* FMScrollableLinearLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B73311151E544B830042FCE4 /* FMScrollableLinearLayout.m */; };
-		B733111B1E544B830042FCE4 /* UIView+FMLayouts.m in Sources */ = {isa = PBXBuildFile; fileRef = B73311171E544B830042FCE4 /* UIView+FMLayouts.m */; };
+		B73311241E557A610042FCE4 /* UIView+FMLayoutsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B73311231E557A610042FCE4 /* UIView+FMLayoutsUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +62,8 @@
 		B73311131E544B830042FCE4 /* FMLinearLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMLinearLayout.m; sourceTree = "<group>"; };
 		B73311141E544B830042FCE4 /* FMScrollableLinearLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMScrollableLinearLayout.h; sourceTree = "<group>"; };
 		B73311151E544B830042FCE4 /* FMScrollableLinearLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMScrollableLinearLayout.m; sourceTree = "<group>"; };
-		B73311161E544B830042FCE4 /* UIView+FMLayouts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FMLayouts.h"; sourceTree = "<group>"; };
-		B73311171E544B830042FCE4 /* UIView+FMLayouts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FMLayouts.m"; sourceTree = "<group>"; };
+		B73311221E557A610042FCE4 /* UIView+FMLayoutsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FMLayoutsUtils.h"; sourceTree = "<group>"; };
+		B73311231E557A610042FCE4 /* UIView+FMLayoutsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FMLayoutsUtils.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,8 +164,8 @@
 				B73311131E544B830042FCE4 /* FMLinearLayout.m */,
 				B73311141E544B830042FCE4 /* FMScrollableLinearLayout.h */,
 				B73311151E544B830042FCE4 /* FMScrollableLinearLayout.m */,
-				B73311161E544B830042FCE4 /* UIView+FMLayouts.h */,
-				B73311171E544B830042FCE4 /* UIView+FMLayouts.m */,
+				B73311221E557A610042FCE4 /* UIView+FMLayoutsUtils.h */,
+				B73311231E557A610042FCE4 /* UIView+FMLayoutsUtils.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -304,12 +304,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B73310E31E544B150042FCE4 /* ViewController.m in Sources */,
-				B733111B1E544B830042FCE4 /* UIView+FMLayouts.m in Sources */,
 				B73311181E544B830042FCE4 /* FMFlowView.m in Sources */,
 				B73311191E544B830042FCE4 /* FMLinearLayout.m in Sources */,
 				B73310E01E544B150042FCE4 /* AppDelegate.m in Sources */,
 				B733111A1E544B830042FCE4 /* FMScrollableLinearLayout.m in Sources */,
 				B73310DD1E544B150042FCE4 /* main.m in Sources */,
+				B73311241E557A610042FCE4 /* UIView+FMLayoutsUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,8 +9,8 @@
 #ifndef FMLayouts_h
 #define FMLayouts_h
 
-#import "UIView+FMLayouts.h"
-#import "FMScrollableLinearLayout.h"
 #import "FMLinearLayout.h"
+#import "FMScrollableLinearLayout.h"
+#import "FMFlowView.h"
 
 #endif /* FMLayouts_h */

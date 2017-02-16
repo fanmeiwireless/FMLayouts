@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIView+FMLayouts.h"
+#import "FMLinearLayout.h"
 
-// layout subviews linear along axis
+/**
+ A UIScrollView wrapper of FMLinearLayout.
+ */
 @interface FMScrollableLinearLayout : UIScrollView
 
 @property (nonatomic, assign) FMLayoutAxis fmLayout_axis;
@@ -20,13 +22,11 @@
 /* Add a view to the end of the arrangedSubviews list, and call -addSubview: automatically.
  */
 - (void)addArrangedSubview:(UIView *)view;
+- (void)addArrangedSubviews:(NSArray *)subviews;
 
 /* Removes a subview from the list of arranged subviews and send it -removeFromSuperview automatically.
  */
 - (void)removeArrangedSubview:(UIView *)view;
-
-- (void)addArrangedSubviews:(NSArray *)subviews;
-
 - (void)removeAllArrangedSubviews;
 
 - (void)setArrangeSubviews:(NSArray<UIView *> *)subviews;

@@ -7,35 +7,38 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIView+FMLayouts.h"
 
 /*
- Layout along the main axis.
+ Layout axis.
+ */
+typedef NS_ENUM(NSInteger, FMLayoutAxis) {
+    kFMLayoutAxisVertical = 0,
+    kFMLayoutAxisHorizonal
+};
+
+/*
+ Layout arranged subviews along the main axis.
  */
 typedef NS_ENUM(NSInteger, FMLayoutDistribution) {
     /*
-     Adjust `FMLinearLayout` size along main axis, to fit arranged subviews and spacings.
+     Adjust layout size along main axis, to fit arranged subviews and spacings.
      */
     FMLayoutDistributionAlongAxis = 0,
     
     /*
-     Adjust arranged subviews size to fill size of `FMLinearLayout` along main axis.
+     Adjust arranged subviews size to fill layout size along main axis. 
+     Note, if layout size not enough, arranged subviews size will seted to zero.
      */
     FMLayoutDistributionFill,
     
     /*
      Adjust `fmLayout_leadingSpacing` and `fmLayout_trailingSpacing`, arranged subviews alignment center along main axis.
      */
-    FMLayoutDistributionCenter,
-    
-    /*
-     Adjust `fmLayout_spacing`, arranged subviews alignment center along main axis.
-     */
-    FMLayoutDistributionBetween
+    FMLayoutDistributionCenter
 };
 
 /*
- Layout along the cross axis.
+ Layout arranged subviews along the cross axis.
  */
 typedef NS_ENUM(NSInteger, FMLayoutAlignment) {
     /*
@@ -43,8 +46,14 @@ typedef NS_ENUM(NSInteger, FMLayoutAlignment) {
      */
     FMLayoutAlignmentCenter = 0,
     
+    /*
+     Arranged subviews alignment leading along cross axis.
+     */
     FMLayoutAlignmentLeading,
     
+    /*
+     Arranged subviews alignment trailing along cross axis.
+     */
     FMLayoutAlignmentTrailing,
 };
 
@@ -53,18 +62,22 @@ typedef NS_ENUM(NSInteger, FMLayoutAlignment) {
  */
 @interface FMLinearLayout : UIView
 
+#pragma mark - initializers
+
+- (instancetype)initWithFrame:(CGRect)frame axis:(FMLayoutAxis)axis mainAxisDistribution:(FMLayoutDistribution)mainAxisDistribution crossAxisAlignment:(FMLayoutAlignment)crossAxisAlignment;
+
 - (instancetype)initWithVerticalAxisAndWidth:(CGFloat)width;
 - (instancetype)initWithHorizonalAxisAndHeight:(CGFloat)height;
 - (instancetype)initWithAxis:(FMLayoutAxis)axis contentMode:(FMLayoutDistribution)contentMode size:(CGSize)size;
 
 #pragma mark - configs
 
-@property (nonatomic, assign) FMLayoutAxis fmLayout_axis;
-@property (nonatomic, assign) FMLayoutDistribution fmLayout_distribution;
-@property (nonatomic, assign) FMLayoutAlignment fmLayout_alignment;
-@property (nonatomic, assign) CGFloat fmLayout_spacing;
-@property (nonatomic, assign) CGFloat fmLayout_leadingSpacing;
-@property (nonatomic, assign) CGFloat fmLayout_trailingSpacing;
+@property (nonatomic, assign) FMLayoutAxis fmLayout_axis; // default is kFMLayoutAxisVertical
+@property (nonatomic, assign) FMLayoutDistribution fmLayout_distribution; // default is FMLayoutDistributionAlongAxis
+@property (nonatomic, assign) FMLayoutAlignment fmLayout_alignment; // default is FMLayoutAlignmentCenter
+@property (nonatomic, assign) CGFloat fmLayout_spacing; // default is 0
+@property (nonatomic, assign) CGFloat fmLayout_leadingSpacing; // default is 0
+@property (nonatomic, assign) CGFloat fmLayout_trailingSpacing; // default is 0
 
 #pragma mark - apis
 
@@ -78,4 +91,26 @@ typedef NS_ENUM(NSInteger, FMLayoutAlignment) {
 - (void)removeArrangedSubview:(UIView *)view;
 - (void)removeAllArrangedSubviews;
 
+- (NSArray<__kindof UIView *> *)fetchArrangedSubviews;
+
 @end
+
+@interface FMLayoutConfig : NSObject
+
+/* 
+ Spacing between self and prev item, if set ignore `fmLayout_spacing` of layout.
+ Should seted before `-[addArrangedSubview:]`
+ Default is -1.
+ Ignored if less than zero.
+ */
+@property (nonatomic, assign) CGFloat fm_spacing;
+
+@end
+
+@interface UIView (FMLayouts_ItemView)
+
+@property (nonatomic, strong, readonly) FMLayoutConfig *layoutConfig;
+
+@end
+
+
