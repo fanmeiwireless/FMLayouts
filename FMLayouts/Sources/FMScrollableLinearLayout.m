@@ -24,12 +24,6 @@
     return _layout;
 }
 
-- (void)setFrame:(CGRect)frame {
-    [super setFrame:frame];
-    
-    self.layout.frame = self.bounds;
-}
-
 - (void)setFmLayout_axis:(FMLayoutAxis)fmLayout_axis {
     self.layout.fmLayout_axis = fmLayout_axis;
 }
